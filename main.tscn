@@ -166,5 +166,6 @@ NpcNodePath = NodePath("../..")
 
 [node name="Flee" type="Node" parent="NPC/StateMachine"]
 script = ExtResource("13_ycdy4")
+NpcNodePath = NodePath("../..")
 
 [connection signal="target_reached" from="NPC/NavigationAgent3D" to="NPC/StateMachine" method="OnNavigationAgent3dTargetReached"]

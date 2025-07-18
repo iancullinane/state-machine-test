@@ -121,8 +121,24 @@ public partial class Npc : CharacterBody3D, IInteractable
 
     public void _Interact()
     {
-        GD.Print("NPC says: Hello there!");
-        // Add your interaction logic here
+        GD.Print("NPC says: Eek! *runs away*");
+        Label label = new Label();
+        label.Text = "NPC *runs away*";
+        AddChild(label);
+        label.Position = new Vector2(100, 100);
+        label.Visible = true;
+        label.Modulate = new Color(1, 1, 1, 1);
+        label.AddThemeFontSizeOverride("font_size", 36);
+
+        // Destroy label after 3 seconds
+        GetTree().CreateTimer(3.0f).Timeout += () =>
+        {
+            label.QueueFree();
+        };
+
+        // Transition to flee state
+        StateMachine stateMachine = GetNode<StateMachine>("StateMachine");
+        stateMachine.ChangeState("Flee");
     }
 
 }
