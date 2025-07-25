@@ -3,6 +3,9 @@ using System;
 
 public partial class FleeState : State
 {
+
+    float fleeRange = 5f;
+
     public override void Enter()
     {
         base.Enter();
@@ -20,16 +23,10 @@ public partial class FleeState : State
         );
 
         // Calculate flee position by moving in opposite direction
-        Vector3 fleePosition = Npc.Position + (fleeDirection * 20f);
+        Vector3 fleePosition = Npc.Position + (fleeDirection * fleeRange);
 
         // Move to the flee position
         Npc.MoveToPosition(fleePosition, true);
-
-        // After 3 seconds, return to wander state
-        GetTree().CreateTimer(3.0f).Timeout += () =>
-        {
-            GetParent<StateMachine>().ChangeState("Wander");
-        };
     }
 
     public override void Exit()
@@ -38,5 +35,11 @@ public partial class FleeState : State
 
         // Stop running when exiting flee state
         Npc.IsRunning = false;
+    }
+
+    public override void NavigationComplete()
+    {
+        base.NavigationComplete();
+        GetParent<StateMachine>().ChangeState("Wander");
     }
 }
