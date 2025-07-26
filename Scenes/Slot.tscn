@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyi6o0bxc8i8h"]
 
-[ext_resource type="Script" uid="uid://dg4vnj2f84ioa" path="res://Scenes/Slot.cs" id="1_vqo0j"]
+[ext_resource type="Script" uid="uid://bnfg6xwcy7sqp" path="res://Components/HUD/Slot.cs" id="1_vqo0j"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6hjk3"]
 
@@ -9,6 +9,7 @@ custom_minimum_size = Vector2(96, 96)
 script = ExtResource("1_vqo0j")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
