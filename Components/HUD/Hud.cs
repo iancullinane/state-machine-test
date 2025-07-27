@@ -7,9 +7,8 @@ public partial class Hud : Node
 
     public override void _Ready()
     {
+
         _inventory = GetNode<Panel>("Inventory");
-        GD.Print($"Inventory panel UID: {_inventory.GetPath()}");
-        GD.Print($"Inventory panel found: {_inventory != null}");
         if (_inventory != null)
         {
             GD.Print($"Initial inventory visibility: {_inventory.Visible}");
@@ -52,7 +51,7 @@ public partial class Hud : Node
 
     public void ToggleWindow(bool open)
     {
-        GD.Print($"ToggleWindow called with: {open}");
+        GD.Print("blahs blahshda");
 
         if (_inventory == null)
         {

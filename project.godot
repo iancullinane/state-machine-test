@@ -75,3 +75,7 @@ inventory={
 [navigation]
 
 3d/merge_rasterizer_cell_scale=0.001
+
+[rendering]
+
+mesh_lod/lod_change/threshold_pixels=0.0
