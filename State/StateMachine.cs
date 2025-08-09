@@ -1,19 +1,13 @@
-using Godot;
 using System;
 using System.Collections.Generic;
+using Godot;
 
 public partial class StateMachine : Node
 {
-
     [Export]
     public State _defaultState;
     State _currentState;
-
-
     Dictionary<string, State> _states;
-
-
-
 
     public override void _Ready()
     {
@@ -58,7 +52,7 @@ public partial class StateMachine : Node
         State newState = _states[stateName];
         if (newState == null)
         {
-            GD.Print("State not found: " + stateName);
+            GD.PrintErr("State not found: " + stateName);
             return;
         }
 
@@ -71,7 +65,7 @@ public partial class StateMachine : Node
 
         _currentState = newState;
         _currentState.Enter();
-        GD.Print("Changed to state: " + stateName);
+        // GD.Print("Changed to state: " + stateName);
     }
 
 

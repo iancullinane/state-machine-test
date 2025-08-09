@@ -36,9 +36,9 @@ public partial class Hud : Node
     }
 
     // Signal handler for when player receives an item
-    private void OnGivePlayerItem()
+    private void OnGivePlayerItem(Item item)
     {
-        GD.Print("Player received an item! Opening inventory...");
+        GD.Print($"Player received an item: {item.Name}! Opening inventory...");
 
         // You can customize this behavior:
         // Option 1: Just show the inventory
@@ -46,7 +46,7 @@ public partial class Hud : Node
 
         // Option 2: Add visual feedback, play sound, etc.
         // PlayItemReceivedSound();
-        // ShowItemNotification();
+        // ShowItemNotification(item);
     }
 
     public void ToggleWindow(bool open)

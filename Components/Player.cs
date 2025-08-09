@@ -1,5 +1,5 @@
-using Godot;
 using System;
+using Godot;
 
 public partial class Player : CharacterBody3D
 {
@@ -75,7 +75,13 @@ public partial class Player : CharacterBody3D
         float speed = max_speed;
 
         // Get movement input
-        Vector2 move_input = Input.GetVector("move_left", "move_right", "move_forward", "move_backward");
+        Vector2 move_input =
+            Input.GetVector(
+                "move_left",
+                "move_right",
+                "move_forward",
+                "move_backward"
+            );
         Vector3 move_direction = (Transform.Basis * new Vector3(move_input.X, 0, move_input.Y)).Normalized();
 
         if (is_running)

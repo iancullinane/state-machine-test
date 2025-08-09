@@ -1,5 +1,5 @@
-using Godot;
 using System;
+using Godot;
 
 
 public partial class Npc : CharacterBody3D, IInteractable
@@ -34,7 +34,7 @@ public partial class Npc : CharacterBody3D, IInteractable
         NavAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
         Player = (Player)GetTree().GetNodesInGroup("Player")[0];
 
-        GD.Print("Player found: " + Player);
+        // GD.Print("Player found: " + Player);
         // Wait for navigation map to be ready
         CallDeferred(nameof(SetupNavigation));
     }
@@ -110,18 +110,17 @@ public partial class Npc : CharacterBody3D, IInteractable
             Rid navMesh = GetWorld3D().NavigationMap;
             Vector3 mapClosestPoint = NavigationServer3D.MapGetClosestPoint(navMesh, toPosition);
             NavAgent.TargetPosition = mapClosestPoint;
-            GD.Print($"Moving to map target: {mapClosestPoint} (original: {toPosition})");
+            // GD.Print($"Moving to map target: {mapClosestPoint} (original: {toPosition})");
         }
         else
         {
             NavAgent.TargetPosition = toPosition;
-            GD.Print($"Moving to position: {toPosition}");
+            // GD.Print($"Moving to position: {toPosition}");
         }
     }
 
     public void _Interact()
     {
-        GD.Print("NPC says: Eek! *runs away*");
         Label label = new Label();
         label.Text = "NPC *runs away*";
         AddChild(label);
