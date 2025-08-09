@@ -9,7 +9,6 @@ custom_minimum_size = Vector2(96, 96)
 script = ExtResource("1_vqo0j")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

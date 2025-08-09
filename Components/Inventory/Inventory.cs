@@ -36,13 +36,25 @@ public partial class Inventory : Panel
 
     public Slot GetSlot(Item item)
     {
+        // First, look for existing slot with this item (for stacking)
         foreach (Slot slot in _slots)
         {
-            if (slot.GetItem() == item)
+            if (slot.GetItem() != null && slot.GetItem() == item)
             {
                 return slot;
             }
         }
+
+        // If no existing slot found, find first empty slot
+        foreach (Slot slot in _slots)
+        {
+            if (slot.GetItem() == null)
+            {
+                return slot;
+            }
+        }
+
+        // No available slots (inventory full)
         return null;
     }
 }

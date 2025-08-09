@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_5q3xj")
-Name = ""
+Name = "Chalice"
 Icon = ExtResource("1_xmbaj")
 MaxStackSize = 12
 CanDrop = true

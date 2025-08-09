@@ -15,6 +15,8 @@ public partial class Slot : Panel
     {
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
+        GuiInput += OnGuiInput;
+        UpdateDisplay();
     }
 
     private void OnMouseEntered()
@@ -25,6 +27,17 @@ public partial class Slot : Panel
     private void OnMouseExited()
     {
         Modulate = _normalColor;
+    }
+
+    private void OnGuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
+        {
+            if (mouseEvent.ButtonIndex == MouseButton.Left)
+            {
+                GD.Print($"Slot clicked! Item: {(Item != null ? Item.Name : "Empty")}");
+            }
+        }
     }
 
     public Item GetItem()
@@ -40,6 +53,7 @@ public partial class Slot : Panel
 
     public void UpdateDisplay()
     {
+        GD.Print("UpdateDisplay");
         if (Item != null)
         {
             Icon = Item.Icon;
