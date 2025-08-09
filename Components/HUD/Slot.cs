@@ -7,12 +7,15 @@ public partial class Slot : Panel
     Item Item;
     int Quantity;
     Texture2D Icon;
+    TextureRect IconRect;
+
 
     private Color _normalColor = new Color(1.0f, 1.0f, 1.0f, 1.0f); // Normal brightness
     private Color _hoverColor = new Color(1.3f, 1.3f, 1.3f, 1.0f);
 
     public override void _Ready()
     {
+        IconRect = GetNode<TextureRect>("IconRect");
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
         GuiInput += OnGuiInput;
@@ -57,6 +60,7 @@ public partial class Slot : Panel
         if (Item != null)
         {
             Icon = Item.Icon;
+            IconRect.Texture = Icon;
         }
     }
 
