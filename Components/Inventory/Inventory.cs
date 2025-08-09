@@ -4,16 +4,16 @@ using Godot;
 public partial class Inventory : Panel
 {
     GridContainer _container;
-    InventorySlot[] _slots;
+    Slot[] _slots;
 
     public override void _Ready()
     {
         _container = GetNode<GridContainer>("GridContainer");
 
-        _slots = new InventorySlot[_container.GetChildCount()];
+        _slots = new Slot[_container.GetChildCount()];
         for (int i = 0; i < _container.GetChildCount(); i++)
         {
-            _slots[i] = _container.GetChild(i) as InventorySlot;
+            _slots[i] = _container.GetChild(i) as Slot;
         }
 
         // Connect to GlobalSignals
@@ -26,12 +26,17 @@ public partial class Inventory : Panel
     private void OnGivePlayerItem(Item item)
     {
         GD.Print("GivePlayerItem signal received: " + item.Name);
+        Slot activeSlot = GetSlot(item);
+        if (activeSlot != null)
+        {
+            activeSlot.SetItem(item);
+        }
     }
 
 
-    public InventorySlot GetSlot(Item item)
+    public Slot GetSlot(Item item)
     {
-        foreach (InventorySlot slot in _slots)
+        foreach (Slot slot in _slots)
         {
             if (slot.GetItem() == item)
             {

@@ -51,8 +51,6 @@ public partial class Hud : Node
 
     public void ToggleWindow(bool open)
     {
-        GD.Print("blahs blahshda");
-
         if (_inventory == null)
         {
             GD.PrintErr("Inventory panel is null!");
@@ -60,20 +58,15 @@ public partial class Hud : Node
         }
 
         _inventory.Visible = open;
-        GD.Print($"Set inventory visibility to: {open}, actual visibility: {_inventory.Visible}");
 
         if (open)
         {
             Input.MouseMode = Input.MouseModeEnum.Visible;
-            GD.Print("Mouse mode set to: Visible");
         }
         else
         {
             Input.MouseMode = Input.MouseModeEnum.Captured;
-            GD.Print("Mouse mode set to: Captured");
         }
-
-        GD.Print($"Current mouse mode: {Input.MouseMode}");
     }
 
     // Clean up signal connections when the node is removed
