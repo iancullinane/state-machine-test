@@ -5,10 +5,10 @@ public partial class Slot : Panel
 {
 
     Item Item;
-    int Quantity;
+    int Quantity = 0;
     Texture2D Icon;
     TextureRect IconRect;
-
+    Label QuantityLabel;
 
     private Color _normalColor = new Color(1.0f, 1.0f, 1.0f, 1.0f); // Normal brightness
     private Color _hoverColor = new Color(1.3f, 1.3f, 1.3f, 1.0f);
@@ -16,6 +16,7 @@ public partial class Slot : Panel
     public override void _Ready()
     {
         IconRect = GetNode<TextureRect>("IconRect");
+        QuantityLabel = GetNode<Label>("Quantity");
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
         GuiInput += OnGuiInput;
@@ -51,6 +52,7 @@ public partial class Slot : Panel
     public void SetItem(Item item)
     {
         Item = item;
+        Quantity++;
         UpdateDisplay();
     }
 
@@ -61,6 +63,14 @@ public partial class Slot : Panel
         {
             Icon = Item.Icon;
             IconRect.Texture = Icon;
+            IconRect.Visible = true;
+            QuantityLabel.Visible = true;
+            QuantityLabel.Text = Quantity.ToString();
+        }
+        else
+        {
+            IconRect.Visible = false;
+            QuantityLabel.Visible = false;
         }
     }
 
