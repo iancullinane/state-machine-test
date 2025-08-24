@@ -49,6 +49,11 @@ public partial class Slot : Panel
         return Item;
     }
 
+    public int GetQuantity()
+    {
+        return Quantity;
+    }
+
     public void SetItem(Item item)
     {
         Item = item;

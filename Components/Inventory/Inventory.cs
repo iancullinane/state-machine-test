@@ -57,4 +57,21 @@ public partial class Inventory : Panel
         // No available slots (inventory full)
         return null;
     }
+
+    public int GetItemQuantity(Item item)
+    {
+        int totalQuantity = 0;
+
+        foreach (Slot slot in _slots)
+        {
+            if (slot.GetItem() != null && slot.GetItem() == item)
+            {
+                totalQuantity += slot.GetQuantity();
+            }
+        }
+
+        return totalQuantity;
+    }
+
+
 }
