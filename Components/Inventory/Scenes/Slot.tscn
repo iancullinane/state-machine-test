@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyi6o0bxc8i8h"]
 
-[ext_resource type="Script" uid="uid://bnfg6xwcy7sqp" path="res://Components/HUD/Slot.cs" id="1_vqo0j"]
+[ext_resource type="Script" uid="uid://bnfg6xwcy7sqp" path="res://Components/HUD/Slot.cs" id="1_2ayux"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6hjk3"]
 
@@ -9,7 +9,7 @@ font_size = 30
 
 [node name="Slot" type="Panel"]
 custom_minimum_size = Vector2(96, 96)
-script = ExtResource("1_vqo0j")
+script = ExtResource("1_2ayux")
 
 [node name="IconRect" type="TextureRect" parent="."]
 layout_mode = 1

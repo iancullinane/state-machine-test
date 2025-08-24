@@ -33,12 +33,22 @@ public partial class Player : CharacterBody3D
     Vector2 camera_look_input;
     float camera_x_rotation = 0.0f;
 
+    // Track inventory state to block camera input
+    bool _isInventoryOpen = false;
+
     public override void _Ready()
     {
         camera = GetNode<Camera3D>("PlayerCamera");
         gravity = ProjectSettings.GetSetting("physics/3d/default_gravity").AsSingle() * gravity_modifier;
 
         Input.MouseMode = Input.MouseModeEnum.Captured;
+
+        // Connect to inventory state signals
+        if (Signals.Instance != null)
+        {
+            Signals.Instance.InventoryOpened += OnInventoryOpened;
+            Signals.Instance.InventoryClosed += OnInventoryClosed;
+        }
     }
 
     public override void _PhysicsProcess(double delta)
@@ -121,10 +131,32 @@ public partial class Player : CharacterBody3D
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        // Block mouse input when inventory is open
+        if (_isInventoryOpen)
+            return;
 
         if (@event is InputEventMouseMotion eventMouseMotion)
             camera_look_input = eventMouseMotion.Relative;
     }
 
+    // Signal handlers for inventory state
+    private void OnInventoryOpened()
+    {
+        _isInventoryOpen = true;
+    }
 
+    private void OnInventoryClosed()
+    {
+        _isInventoryOpen = false;
+    }
+
+    // Clean up signal connections when the node is removed
+    public override void _ExitTree()
+    {
+        if (Signals.Instance != null)
+        {
+            Signals.Instance.InventoryOpened -= OnInventoryOpened;
+            Signals.Instance.InventoryClosed -= OnInventoryClosed;
+        }
+    }
 }

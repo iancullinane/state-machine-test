@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cn8cdjo8b34aj" path="res://Components/InteractionController.cs" id="2_5ixxa"]
 [ext_resource type="ArrayMesh" uid="uid://0lflm7qa17jy" path="res://Models/Lantern/Lantern.obj" id="3_5ixxa"]
 [ext_resource type="Script" uid="uid://cyl1nsn83inum" path="res://Components/HUD/Hud.cs" id="3_nn08x"]
-[ext_resource type="PackedScene" uid="uid://cyi6o0bxc8i8h" path="res://Scenes/Slot.tscn" id="4_52ee3"]
+[ext_resource type="PackedScene" uid="uid://cyi6o0bxc8i8h" path="res://Components/Inventory/Scenes/Slot.tscn" id="4_52ee3"]
 [ext_resource type="Material" uid="uid://cx3b2ijwm8h7q" path="res://Models/Lantern/LanternGlass.tres" id="4_nn08x"]
 [ext_resource type="Script" uid="uid://ddtrbalv80rw6" path="res://Components/Inventory/Inventory.cs" id="6_52ee3"]
 

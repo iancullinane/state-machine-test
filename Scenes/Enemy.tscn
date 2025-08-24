@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dy0wq0q02jg1c"]
+
+[ext_resource type="Script" uid="uid://d16k2bdv2438v" path="res://Components/Npc.cs" id="1_mo1ky"]
+[ext_resource type="PackedScene" uid="uid://c2tcjs26j25ww" path="res://Models/Alien/alien-bug.glb" id="2_6bs3c"]
+[ext_resource type="Script" uid="uid://cm2lqmvo1co6o" path="res://State/StateMachine.cs" id="3_uoxpr"]
+[ext_resource type="Script" uid="uid://3rcngiom3byg" path="res://State/States/WanderState.cs" id="4_idouy"]
+[ext_resource type="Script" uid="uid://ial2m23m6umi" path="res://State/States/ChaseState.cs" id="5_0o0ue"]
+[ext_resource type="Script" uid="uid://daj2vrkwy5t70" path="res://State/States/FleeState.cs" id="6_6s1gy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5vw27"]
+height = 1.0
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_mo1ky")
+Speed = 1.5
+SpeedModifier = 1.2
+
+[node name="alien-bug" parent="." instance=ExtResource("2_6bs3c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.532437, 0)
+shape = SubResource("CapsuleShape3D_5vw27")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_defaultState")]
+script = ExtResource("3_uoxpr")
+_defaultState = NodePath("Wander")
+
+[node name="Wander" type="Node" parent="StateMachine"]
+script = ExtResource("4_idouy")
+NpcNodePath = NodePath("../..")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("5_0o0ue")
+StopRange = 2.0
+LoseInterestRange = 5.0
+NpcNodePath = NodePath("../..")
+
+[node name="Flee" type="Node" parent="StateMachine"]
+script = ExtResource("6_6s1gy")
+NpcNodePath = NodePath("../..")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="StateMachine" method="OnNavigationAgent3dTargetReached"]

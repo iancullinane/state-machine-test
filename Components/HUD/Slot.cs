@@ -63,7 +63,6 @@ public partial class Slot : Panel
 
     public void UpdateDisplay()
     {
-        GD.Print("UpdateDisplay");
         if (Item != null)
         {
             Icon = Item.Icon;

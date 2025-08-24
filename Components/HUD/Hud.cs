@@ -62,10 +62,20 @@ public partial class Hud : Node
         if (open)
         {
             Input.MouseMode = Input.MouseModeEnum.Visible;
+            // Emit signal to notify player that inventory is open
+            if (Signals.Instance != null)
+            {
+                Signals.Instance.EmitInventoryOpened();
+            }
         }
         else
         {
             Input.MouseMode = Input.MouseModeEnum.Captured;
+            // Emit signal to notify player that inventory is closed
+            if (Signals.Instance != null)
+            {
+                Signals.Instance.EmitInventoryClosed();
+            }
         }
     }
 
